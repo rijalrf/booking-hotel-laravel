@@ -30,10 +30,11 @@ class RoomController extends Controller
         $amenities = Amenity::all();
 
         // find room by id
-        $roomamenities = RoomAmenity::where('room_id', $id)->with('Amenities')->get();
+        $roomamenities = RoomAmenity::where('room_id', $id)->with('Amenities')->paginate(4);
 
         // find room by id
         $room = Room::find($id);
+
 
         // return view to edit room
         return view('pages.room.edit', compact('roomamenities', 'amenities', 'room'));

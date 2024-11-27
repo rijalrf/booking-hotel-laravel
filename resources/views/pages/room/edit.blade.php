@@ -1,6 +1,7 @@
 <x-layout>
     <x-slot:breadcrumb>
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('room.index') }}">Room List</a></li>
         <li class="breadcrumb-item active" aria-current="page">New Room</li>
     </x-slot:breadcrumb>
     <x-slot:title>

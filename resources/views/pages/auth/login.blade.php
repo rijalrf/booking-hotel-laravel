@@ -5,25 +5,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="{{ asset('css/bootstraps-5.min.css') }}" rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
 <body>
     <div class="d-flex flex-row justify-content-center gap-3 vh-100">
-        <div class="w-50 d-flex justify-content-center align-items-center">
-            <img class="w-100" src="{{ asset('img/login-img-1.jpg') }}" alt="">
+        <div class="w-75 d-flex justify-content-center align-items-center bg-primary">
+            <img class="w-100 object-fit-contain" src="{{ asset('img/login-page.jpg') }}" alt="">
         </div>
-        <div class="w-50 d-flex justify-content-center align-items-center flex-column">
+        <div class="w-25 d-flex justify-content-center align-items-center flex-column">
 
-            <form method="POST" action="{{ route('auth.login') }}" class="w-50">
+            <form method="POST" action="{{ route('auth.login') }}" class="w-75">
                 <h2>Sign In</h2>
-                <p class="text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, illum!</p>
+                <p class="text-secondary">Comprehensive choices for every accommodation: hotels, villas, apartments, and
+                    hostels.</p>
                 @csrf
                 @method('POST')
                 <div class="mb-3">
-                    <div class="input-group flex-nowrap">
+                    <div class="input-group">
                         <span class="input-group-text" id="addon-wrapping"><i data-feather="mail"></i></span>
                         <input type="email" name="email"
                             class="form-control @error('email') is-invalid" @enderror id="email" placeholder="Email"
@@ -35,7 +36,7 @@
 
                 </div>
                 <div class="mb-3">
-                    <div class="input-group flex-nowrap">
+                    <div class="input-group">
                         <span class="input-group-text" id="addon-wrapping"><i data-feather="key"></i></span>
                         <input type="password" name="password"
                             class="form-control  @error('password') is-invalid @enderror" id="password"
@@ -44,6 +45,7 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+
 
                 </div>
                 <div class="py-2">
@@ -57,7 +59,7 @@
                     </div>
                 </div>
                 <div class="mt-3">
-                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                    <button type="submit" class="cus btn cus btn-primary w-100">Login</button>
                 </div>
             </form>
         </div>

@@ -165,7 +165,7 @@
 </style>
 <div class="notification-container">
     <div class="notification {{ $type }}">
-        <div class="p-3">
+        <div>
             @if ($type == 'success')
                 <i data-feather="check-circle"></i>
             @elseif($type == 'info')

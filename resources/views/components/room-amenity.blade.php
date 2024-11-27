@@ -47,6 +47,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $roomamenities->links() }}
         @else
             <x-empty-section />
         @endif

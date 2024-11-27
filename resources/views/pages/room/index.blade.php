@@ -1,21 +1,4 @@
 <x-layout>
-    <x-slot:breadcrumb>
-        <li class="breadcrumb-item">Home</li>
-        <li class="breadcrumb-item active" aria-current="page">Room List</li>
-    </x-slot:breadcrumb>
-    <x-slot:title>
-        Room List
-    </x-slot:title>
-    <x-slot:action>
-        <a href="{{ route('room.add') }}" class="btn btn-primary"><i data-feather="plus"></i>Add Room</a>
-    </x-slot:action>
-
-    @if (session('notification'))
-        <x-message>
-            <x-slot:type>{{ session('notification.type') }}</x-slot:type>
-            <x-slot:message>{{ session('notification.message') }}</x-slot:message>
-        </x-message>
-    @endif
     <x-modal>
         <x-slot:modalTitle>
             Delete Room
@@ -32,16 +15,27 @@
             </form>
         </x-slot:modalFooter>
     </x-modal>
+    <x-slot:breadcrumb>
+        <li class="breadcrumb-item">Home</li>
+        <li class="breadcrumb-item active" aria-current="page">Room List</li>
+    </x-slot:breadcrumb>
+    <x-slot:title>
+        Room List
+    </x-slot:title>
+    <x-slot:action>
+        <a href="{{ route('room.add') }}" class="btn btn-primary"><i data-feather="plus"></i>Add Room</a>
+    </x-slot:action>
+
     <div class="card">
         <div class="card-body">
-            <table class="table">
+            <table class="table" id="roomTable">
                 <thead>
                     <tr>
                         <th scope="col">Room Number</th>
                         <th scope="col">Children Capacity</th>
                         <th scope="col">Adult Capacity</th>
                         <th scope="col">Price</th>
-                        <th scope="col" class="text-end">Action</th>
+                        <th scope="col" class="text-center">#</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,14 +46,27 @@
                             <td>{{ $room->adultCapacity }}</td>
                             <td>{{ $room->price }}</td>
                             <td>
-                                <div class="d-flex flex-col justify-content-end gap-2">
-                                    <a href="{{ route('room.detail', $room->id) }}" class="btn btn-sm btn-primary"><i
-                                            data-feather="edit"></i></a>
-                                    <button id="deleteRoom"
-                                        onclick="deleteRoom({{ $room->id }},{{ $room->roomNumber }})" type="submit"
-                                        class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal">
-                                        <i data-feather="trash-2"></i>
-                                    </button>
+                                <div class="dropdown-center text-center">
+                                    <i class="dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false" data-feather="more-vertical">
+                                    </i>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('room.detail', $room->id) }}">
+                                                <i style="width: 16px" class="text-gray" data-feather="edit"></i>
+                                                Edit
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="deleteRoom"
+                                                onclick="deleteRoom({{ $room->id }},{{ $room->roomNumber }})"
+                                                type="submit" class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#modal">
+                                                <i style="width: 16px" class="text-gray" data-feather="trash-2"></i>
+                                                Delete
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </td>
                         </tr>
@@ -71,6 +78,7 @@
             </div>
         </div>
     </div>
+
     <script>
         function deleteRoom(roomId, roomNumber) {
             // Set room number in the modal

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg fixed-top  bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
             <x-app-title />
@@ -18,7 +18,7 @@
                         Booking
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">New Booking</a></li>
+                        <li><a class="dropdown-item" href="{{ route('booking.new') }}">New Booking</a></li>
                         <li><a class="dropdown-item" href="{{ route('booking.index') }}">Booking List</a></li>
                     </ul>
                 </li>
