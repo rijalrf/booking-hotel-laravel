@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot:breadcrumb>
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
         <li class="breadcrumb-item active" aria-current="page">New Room</li>
     </x-slot:breadcrumb>
     <x-slot:title>
@@ -57,12 +57,7 @@
                         <a href="{{ route('room.index') }}" class="btn btn-outline-primary">Back</a>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </form>
-                    @if (session('notification'))
-                        <x-message>
-                            <x-slot:type>{{ session('notification.type') }}</x-slot:type>
-                            <x-slot:message>{{ session('notification.message') }}</x-slot:message>
-                        </x-message>
-                    @endif
+
 
                 </div>
             </div>

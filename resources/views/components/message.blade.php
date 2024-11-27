@@ -92,12 +92,25 @@
 
 <style>
     /* Container for notification */
+    .alert-b {
+        position: fixed;
+        display: flex;
+        gap: 10px;
+        top: 20px;
+        left: 50%;
+        animation: slideDown 0.5s ease, slideUp 0.5s 4s forwards;
+        transform: translateX(-50%);
+        z-index: 9999;
+        width: 500px;
+    }
+
     .notification-container {
         position: fixed;
         top: 20px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 9999;
+        justify-content: space-between;
         width: 500px;
     }
 
@@ -111,7 +124,7 @@
         border-radius: 5px;
         color: #fff;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        animation: fadeIn 0.5s ease, fadeOut 0.5s 4s forwards;
+        animation: slideUp 0.5s ease, slideDown 0.5s 4s forwards;
         cursor: pointer;
     }
 
@@ -143,7 +156,8 @@
         /* Red */
     }
 
-    Fade in and fade out animation @keyframes fadeIn {
+    /* Fade in and fade out animation  */
+    @keyframes fadeIn {
         0% {
             opacity: 0;
         }
@@ -162,8 +176,34 @@
             opacity: 0;
         }
     }
+
+    /* Animasi Slide Down */
+    @keyframes slideDown {
+        from {
+            max-height: 0;
+            opacity: 0;
+        }
+
+        to {
+            max-height: 200px;
+            opacity: 1;
+        }
+    }
+
+    /* Animasi Slide Up */
+    @keyframes slideUp {
+        from {
+            max-height: 200px;
+            opacity: 1;
+        }
+
+        to {
+            max-height: 0;
+            opacity: 0;
+        }
+    }
 </style>
-<div class="notification-container">
+{{-- <div class="notification-container">
     <div class="notification {{ $type }}">
         <div>
             @if ($type == 'success')
@@ -180,6 +220,19 @@
         <span class="close-btn">&times;</span>
     </div>
 
+</div> --}}
+<div class="alert alert-{{ $type }} alert-dismissible fade show alert-b" role="alert">
+    @if ($type == 'success')
+        <i data-feather="check-circle"></i>
+    @elseif($type == 'info')
+        <i data-feather="info"></i>
+    @elseif($type == 'warning')
+        <i data-feather="alert-circle"></i>
+    @else
+        <i data-feather="x-circle"></i>
+    @endif
+    <div>{{ $message }}</div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 
 <script>

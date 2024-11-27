@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Room;
 use App\Models\Booking;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class BookingController extends Controller
 {
@@ -58,7 +59,7 @@ class BookingController extends Controller
             'guest_firstname' => 'required|string|max:255',
             'guest_lastname' => 'required|string|max:255',
             'check_in_date' => 'required|date|after_or_equal:today',
-            'check_out_date' => 'required|date|after:check_in',
+            'check_out_date' => 'required|date|after:check_in_date',
             'adult_capacity' => 'required|integer|min:1',
             'children_capacity' => 'required|integer|min:0',
         ]);
@@ -80,6 +81,12 @@ class BookingController extends Controller
             $request->adult_capacity,
             $request->children_capacity,
         );
+        // Lempar exception jika tidak ada kamar yang tersedia
+        if (empty($availableRooms)) {
+            throw ValidationException::withMessages([
+                'availableRooms' => 'No available rooms match your criteria.'
+            ]);
+        }
         // dd($availableRooms);
         $booking = new Booking($request->all());
 
@@ -110,5 +117,21 @@ class BookingController extends Controller
             'type' => 'success',
             'message' => 'Booking status updated successfully'
         ]);
+    }
+
+    public function search(Request $request)
+    {
+
+        // cari booking berdasarkan nama belakang dan status nama belakng bisa dan status bisa kosong
+        $bookings = Booking::where('guest_lastname', 'like', '%' . $request->guest_lastname . '%')
+            ->where('status', 'like', '%' . $request->status . '%')
+            ->latest()->paginate(10);
+
+        $search = [
+            'query' => $request->guest_lastname,
+            'status' => $request->status,
+        ];
+
+        return view('pages.booking.index', compact('bookings', 'search'));
     }
 }

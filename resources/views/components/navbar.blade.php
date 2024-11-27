@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg fixed-top  bg-body-tertiary">
+<nav id="navbar" class="navbar navbar-expand-lg fixed-top  bg-white dark:bg-dark shadow-sm">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
             <x-app-title />
@@ -10,24 +10,41 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('home.index') }}">Home</a>
+                    <a class="nav-link {{ request()->path() == '/' ? 'active' : '' }}" aria-current="page"
+                        href="{{ route('home.index') }}">
+                        <i class="icon-sm" data-feather="home"></i>
+                        Home</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                    <a class="nav-link dropdown-toggle {{ request()->path() == 'bookings' ? 'active' : '' }}"
+                        href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="icon-sm" data-feather="book"></i>
                         Booking
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('booking.new') }}">New Booking</a></li>
-                        <li><a class="dropdown-item" href="{{ route('booking.index') }}">Booking List</a></li>
+                        <li><a class="dropdown-item" href="{{ route('booking.new') }}">
+                                <i class="icon-sm" data-feather="bookmark"></i>
+                                New Booking</a></li>
+                        <li><a class="dropdown-item" href="{{ route('booking.index') }}">
+                                <i class="icon-sm" data-feather="align-right"></i>
+                                Booking List</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('room.index') }}">Room</a>
+                    <a class="nav-link {{ request()->path() == 'rooms' ? 'active' : '' }}" aria-current="page"
+                        href="{{ route('room.index') }}">
+                        <i class="icon-sm" data-feather="umbrella"></i>
+                        Room</a>
                 </li>
             </ul>
-            <div role="userInfo">
-                <x-userinfo />
+            {{-- Theme --}}
+            <div class="d-flex flex-row gap-4">
+                <div>
+                    <x-theme />
+                </div>
+                <div role="userInfo">
+                    <x-userinfo />
+                </div>
             </div>
         </div>
     </div>

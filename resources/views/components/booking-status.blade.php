@@ -1,7 +1,6 @@
-<div class="card" style="height: 300px">
+<div class="card" style="height: 450px">
     <div class="card-body">
-        <h3 class="card-title my-2">
-
+        <h3 class="card-title my-1">
             @if ($title == 'Check In')
                 <i data-feather="log-in"></i>
             @else
@@ -10,17 +9,9 @@
 
             {{ $title }} Today
         </h3>
+        <hr>
         <div class="table-responsive">
             <table class="table">
-
-                <thead>
-                    <tr>
-                        <th scope="col">Guest Name</th>
-                        <th scope="col">{{ $title }} Date</th>
-                        <th scope="col">Room</th>
-                        <th></th>
-                    </tr>
-                </thead>
                 <tbody>
                     @foreach ($bookingStatus as $booking)
                         <tr class="">
@@ -32,12 +23,13 @@
                                 <td> {{ $booking->check_out_date }}</td>
                             @endif
                             <td>{{ $booking->room->roomNumber }}</td>
-                            <th><button class="btn btn-primary">{{ $title }}</button></th>
+                            <td class="text-end"><button class="btn btn-primary btn-sm">{{ $title }}</button>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-
+        <div> {{ $bookingStatus->links() }}</div>
     </div>
 </div>

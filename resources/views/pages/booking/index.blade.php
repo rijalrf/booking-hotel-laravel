@@ -1,14 +1,52 @@
+@php
+    if (empty($search)) {
+        $search = [
+            'query' => '',
+            'status' => '',
+        ];
+    }
+@endphp
 <x-layout>
     <x-slot:breadcrumb>
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Booking List</li>
+        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">
+                <i class="icon-sm" data-feather="home"></i>
+                Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">
+            <i class="icon-sm" data-feather="align-right"></i>
+            Booking List
+        </li>
     </x-slot:breadcrumb>
     <x-slot:title>
-        Booking List
+        <span>Booking List</span>
     </x-slot:title>
     <x-slot:action>
-        <a href="{{ route('booking.new') }}" class="btn btn-primary"><i data-feather="plus"></i>Add Booking</a>
+        <a href="{{ route('booking.new') }}" class="btn btn-primary"><i class="icon-sm" data-feather="plus"></i>Add
+            Booking</a>
     </x-slot:action>
+    <div class="my-3">
+        <form action="{{ route('booking.search') }}">
+            <div class="form-group d-flex gap-3">
+                <div class="w-25">
+                    <input type="text" class="form-control" id="search" name="guest_lastname"
+                        value="{{ $search['query'] ?? '' }}" placeholder="Search by Guest Name">
+                </div>
+                <div class="w-25">
+                    <select class="form-select" name="status">
+                        <option @if ($search['status'] == '') selected @endif value="">All</option>
+                        <option @if ($search['status'] == 'checked_in') selected @endif value="checked_in">Checked In</option>
+                        <option @if ($search['status'] == 'checked_out') selected @endif value="checked_out">Checked Out
+                        </option>
+                        <option @if ($search['status'] == 'cancelled') selected @endif value="cancelled">Cancelled</option>
+                        <option @if ($search['status'] == 'booked') selected @endif value="booked">Booked</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="icon-sm" data-feather="search"></i>Search</button>
+                <a href="{{ route('booking.index') }}" class="btn btn-outline-primary">
+                    <i class="icon-sm" data-feather="refresh-cw"></i>Reset</a>
+            </div>
+        </form>
+    </div>
     <div class="card">
         <div class="card-body">
             <table class="table">

@@ -1,15 +1,12 @@
-:root {
-    --bs-primary: #e5c08b;
-    --bs-primary-rgb: #e5c08b;
-}
-
 * {
-    margin: 0px;
-    padding: 0px;
+    font-family: "Poppins", serif;
 }
 
-body {
-    /* add font */
-    font-family: "Poppins", sans-serif;
-    background-color: rgb(237, 238, 240);
+.icon-sm{
+   width: 16px;
+   margin-right: 5px;
+}
+
+a{
+    text-decoration: none;
 }

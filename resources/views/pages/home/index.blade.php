@@ -1,4 +1,8 @@
-<x-layout-home>
+<x-layout-base>
+    <x-navbar />
+    <div style="height: 460px; overflow:hidden" class="mb-4">
+        <img class="w-100" src="{{ asset('img/room_banner1.jpg') }}" alt="">
+    </div>
     <main class="main-content" id="main">
         <div class="container">
             <div class="row">
@@ -9,6 +13,15 @@
                     <x-booking-status :bookingStatus="$checkedInBookings" :title="'Check In'" />
                 </div>
             </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <x-booking-status :bookingStatus="$checkedOutBookings" :title="'Check Out'" />
+                </div>
+                <div class="col">
+                    <x-booking-status :bookingStatus="$checkedInBookings" :title="'Check In'" />
+                </div>
+            </div>
+        </div>
         </div>
     </main>
-</x-layout-home>
+</x-layout-base>

@@ -10,12 +10,7 @@
     <x-slot:action>
 
     </x-slot:action>
-    @if (session('notification'))
-        <x-message>
-            <x-slot:type>{{ session('notification.type') }}</x-slot:type>
-            <x-slot:message>{{ session('notification.message') }}</x-slot:message>
-        </x-message>
-    @endif
+
     <div class="row">
         <div class="col">
             <div class="card">
@@ -62,12 +57,6 @@
                         <a href="{{ route('room.index') }}" class="btn btn-outline-primary">Back</a>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </form>
-                    @if (session('notification'))
-                        <x-message>
-                            <x-slot:type>{{ session('notification.type') }}</x-slot:type>
-                            <x-slot:message>{{ session('notification.message') }}</x-slot:message>
-                        </x-message>
-                    @endif
 
                 </div>
             </div>

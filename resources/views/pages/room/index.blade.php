@@ -16,14 +16,18 @@
         </x-slot:modalFooter>
     </x-modal>
     <x-slot:breadcrumb>
-        <li class="breadcrumb-item">Home</li>
-        <li class="breadcrumb-item active" aria-current="page">Room List</li>
+        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">
+                <i class="icon-sm" data-feather="home"></i> Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">
+            <i class="icon-sm" data-feather="umbrella"></i> Room List
+        </li>
     </x-slot:breadcrumb>
     <x-slot:title>
         Room List
     </x-slot:title>
     <x-slot:action>
-        <a href="{{ route('room.add') }}" class="btn btn-primary"><i data-feather="plus"></i>Add Room</a>
+        <a href="{{ route('room.add') }}" class="btn btn-primary"><i class="icon-sm" data-feather="plus"></i>Add
+            Room</a>
     </x-slot:action>
 
     <div class="card">
@@ -47,13 +51,13 @@
                             <td>{{ $room->price }}</td>
                             <td>
                                 <div class="dropdown-center text-center">
-                                    <i class="dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    <i class="dropdown-toggle icon-sm" type="button" data-bs-toggle="dropdown"
                                         aria-expanded="false" data-feather="more-vertical">
                                     </i>
                                     <ul class="dropdown-menu">
                                         <li>
                                             <a class="dropdown-item" href="{{ route('room.detail', $room->id) }}">
-                                                <i style="width: 16px" class="text-gray" data-feather="edit"></i>
+                                                <i style="width: 16px" class="icon-sm" data-feather="edit"></i>
                                                 Edit
                                             </a>
                                         </li>
@@ -62,7 +66,7 @@
                                                 onclick="deleteRoom({{ $room->id }},{{ $room->roomNumber }})"
                                                 type="submit" class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#modal">
-                                                <i style="width: 16px" class="text-gray" data-feather="trash-2"></i>
+                                                <i style="width: 16px" class="icon-sm" data-feather="trash-2"></i>
                                                 Delete
                                             </a>
                                         </li>
