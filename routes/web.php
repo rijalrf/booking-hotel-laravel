@@ -1,12 +1,14 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\AuthMiddleware;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\HomepageController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomAmenityController;
-use App\Http\Middleware\AuthMiddleware;
+use App\Http\Controllers\RoomServicesController;
+use App\Http\Controllers\RoomServiceTypeController;
 
 //route auth 
 Route::get('/login', [AuthController::class, 'index'])->name('login');
@@ -37,5 +39,13 @@ Route::middleware('auth')->group(function () {
 
     //route room amenity
     Route::post('/roomAmenities/create', [RoomAmenityController::class, 'create'])->name('roomAmenity.create');
+    Route::post('/roomAmenities/create', [RoomAmenityController::class, 'create'])->name('roomAmenity.create');
     Route::delete('/roomAmenities/delete/{id}', [RoomAmenityController::class, 'delete'])->name('roomAmenity.delete');
+
+    //Room Services
+    Route::post('/roomServices/create', [RoomServicesController::class, 'create'])->name('roomServices.create');
+
+    //Room Service Type
+    Route::get('/roomServiceType', [RoomServiceTypeController::class, 'index'])->name('roomServiceType.index');
+    Route::post('/roomServiceType/create', [RoomServiceTypeController::class, 'create'])->name('roomServiceType.create');
 });

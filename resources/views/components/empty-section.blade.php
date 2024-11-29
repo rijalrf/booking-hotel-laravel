@@ -1,4 +1,4 @@
 <div class="text-center p-4">
-    <img width="60" src="{{ asset('img/layers.png') }}" alt="">
+    <i data-feather="layers" class="icon-xl stroke-width-sm"></i>
     <p class="mt-3">No data to show</p>
 </div>

@@ -5,13 +5,13 @@
     <ul class="dropdown-menu">
         <li onclick="setTheme('light')">
             <a class="dropdown-item" href="#">
-                <i data-feather="sun"></i>
+                <i class="icon-sm" data-feather="sun"></i>
                 <span id="thValue"">Light</span>
             </a>
         </li>
         <li onclick="setTheme('dark')">
             <a class="dropdown-item" href="#">
-                <i data-feather="moon"></i>
+                <i class="icon-sm" data-feather="moon"></i>
                 <span id="thValue">Dark</span>
             </a>
         </li>
@@ -23,14 +23,14 @@
     const navbar = document.getElementById('navbar');
     const theme = localStorage.getItem('theme') || 'light';
     if (theme == 'dark') {
-        currTh.innerHTML = '<i data-feather="moon"></i>';
+        currTh.innerHTML = '<i  data-feather="moon"></i>';
         navbar.classList.remove('bg-white');
         navbar.classList.add('bg-dark');
         currTh.classList.remove('text-dark');
         currTh.classList.add('text-white');
 
     } else {
-        currTh.innerHTML = '<i data-feather="sun"></i>';
+        currTh.innerHTML = '<i  data-feather="sun"></i>';
         navbar.classList.remove('bg-dark');
         navbar.classList.add('bg-white');
         currTh.classList.remove('text-white');

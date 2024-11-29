@@ -1,8 +1,15 @@
 <x-layout>
     <x-slot:breadcrumb>
-        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('booking.index') }}">Booking List</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Add New Booking</li>
+        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">
+                <i class="icon-sm" data-feather="home"></i>
+                Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('booking.index') }}">
+                <i class="icon-sm" data-feather="align-right"></i>
+                Booking List</a></li>
+        <li class="breadcrumb-item active" aria-current="page">
+            <i class="icon-sm" data-feather="plus"></i>
+            Add New Booking
+        </li>
     </x-slot:breadcrumb>
     <x-slot:title>
 
@@ -22,17 +29,17 @@
                     @method('POST')
                     <div class="mb-3">
                         <label for="guest_lastname" class="form-label">Guest Last Name</label>
-                        <input type="text" name="guest_lastname"
+                        <input type="text" name="guest_lastname" placeholder="e.g Due"
                             class="form-control @error('guest_lastname') is-invalid @enderror" id="guest_lastname"
                             id="guest_lastname" @if ($booking->status != '') disabled @endif
-                            value="{{ old('guest_lastname', $booking->guest_lastname) }} ">
+                            value="{{ old('guest_lastname', $booking->guest_lastname) }}">
                         @error('guest_lastname')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="guest_firstname" class="form-label">Guest First Name</label>
-                        <input type="text" name="guest_firstname"
+                        <input type="text" name="guest_firstname" placeholder="e.g John"
                             class="form-control @error('guest_firstname') is-invalid @enderror" id="guest_firstname"
                             id="guest_firstname" @if ($booking->status != '') disabled @endif
                             value="{{ old('guest_firstname', $booking->guest_firstname) }}">
@@ -40,45 +47,50 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="mb-3">
-                        <label for="check_in_date" class="form-label">Check-In Date</label>
-                        <input type="date" name="check_in_date"
-                            class="form-control @error('check_in_date') is-invalid @enderror" id="check_in_date"
-                            id="check_in_date" @if ($booking->status != '') disabled @endif
-                            value="{{ old('check_in_date', $booking->check_in_date) }}">
-                        @error('check_in_date')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                    <div class="row">
+                        <div class="mb-3 col-6">
+                            <label for="check_in_date" class="form-label">Check-In Date</label>
+                            <input type="date" name="check_in_date"
+                                class="form-control @error('check_in_date') is-invalid @enderror" id="check_in_date"
+                                id="check_in_date" @if ($booking->status != '') disabled @endif
+                                value="{{ old('check_in_date', $booking->check_in_date) }}">
+                            @error('check_in_date')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label for="check_out_date" class="form-label">Check-Out Date</label>
+                            <input type="date" name="check_out_date"
+                                class="form-control @error('check_out_date') is-invalid @enderror" id="check_out_date"
+                                id="check_out_date" @if ($booking->status != '') disabled @endif
+                                value="{{ old('check_out_date', $booking->check_out_date) }}">
+                            @error('check_out_date')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="check_out_date" class="form-label">Check-Out Date</label>
-                        <input type="date" name="check_out_date"
-                            class="form-control @error('check_out_date') is-invalid @enderror" id="check_out_date"
-                            id="check_out_date" @if ($booking->status != '') disabled @endif
-                            value="{{ old('check_out_date', $booking->check_out_date) }}">
-                        @error('check_out_date')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="adult_capacity" class="form-label">Adult Capacity</label>
-                        <input type="number" name="adult_capacity"
-                            class="form-control @error('adult_capacity') is-invalid @enderror" id="adult_capacity"
-                            id="adult_capacity" @if ($booking->status != '') disabled @endif
-                            value="{{ old('adult_capacity', $booking->adult_capacity) }}">
-                        @error('adult_capacity')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="children_capacity" class="form-label">Children Capacity</label>
-                        <input type="number" name="children_capacity"
-                            class="form-control @error('children_capacity') is-invalid @enderror" id="children_capacity"
-                            id="children_capacity" @if ($booking->status != '') disabled @endif
-                            value="{{ old('children_capacity', $booking->children_capacity) }}">
-                        @error('children_capacity')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                    <div class="row">
+                        <div class="mb-3 col-6">
+                            <label for="adult_capacity" class="form-label">Adult Capacity</label>
+                            <input type="number" name="adult_capacity"
+                                class="form-control @error('adult_capacity') is-invalid @enderror" id="adult_capacity"
+                                id="adult_capacity" @if ($booking->status != '') disabled @endif
+                                value="{{ old('adult_capacity', $booking->adult_capacity) }}">
+                            @error('adult_capacity')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label for="children_capacity" class="form-label">Children Capacity</label>
+                            <input type="number" name="children_capacity"
+                                class="form-control @error('children_capacity') is-invalid @enderror"
+                                id="children_capacity" id="children_capacity"
+                                @if ($booking->status != '') disabled @endif
+                                value="{{ old('children_capacity', $booking->children_capacity) }}">
+                            @error('children_capacity')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="room_number" class="form-label">Room Number</label>
@@ -130,8 +142,8 @@
                 @endif
             </div>
         </div>
-        <div class="col">
-
+        <div class="col text-center">
+            <img class="w-75" src="{{ asset('img/vector2.png') }}" alt="">
         </div>
     </div>
 </x-layout>

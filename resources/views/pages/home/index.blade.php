@@ -7,10 +7,10 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <x-booking-status :bookingStatus="$checkedOutBookings" :title="'Check Out'" />
+                    <x-booking-check-out-today :bookingStatus="$checkedOutBookings" />
                 </div>
                 <div class="col">
-                    <x-booking-status :bookingStatus="$checkedInBookings" :title="'Check In'" />
+                    <x-booking-check-in-today :bookingStatus="$checkedInBookings" />
                 </div>
             </div>
             <div class="row mt-4">

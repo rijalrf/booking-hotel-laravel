@@ -1,7 +1,12 @@
 <x-layout>
     <x-slot:breadcrumb>
-        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">New Room</li>
+        <li class="breadcrumb-item"><a href="{{ route('home.index') }}">
+                <i class="icon-sm" data-feather="home"></i>
+                Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">
+            <i class="icon-sm" data-feather="plus"></i>
+            New Room
+        </li>
     </x-slot:breadcrumb>
     <x-slot:title>
         Add New Room
@@ -54,8 +59,14 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        <a href="{{ route('room.index') }}" class="btn btn-outline-primary">Back</a>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <div class="d-flex gap-3">
+                            <a href="{{ route('room.index') }}" class="btn btn-outline-primary">
+                                <i data-feather="arrow-left" class="icon-sm"></i>
+                                Back</a>
+                            <button type="submit" class="btn btn-primary">
+                                <i data-feather="send" class="icon-sm"></i>
+                                Save</button>
+                        </div>
                     </form>
 
 
@@ -63,8 +74,8 @@
             </div>
         </div>
 
-        <div class="col">
-
+        <div class="col text-center">
+            <img class="w-75" src="{{ asset('img/vector1.png') }}" alt="">
         </div>
     </div>
 </x-layout>

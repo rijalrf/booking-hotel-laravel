@@ -61,7 +61,6 @@ class BookingController extends Controller
             'check_in_date' => 'required|date|after_or_equal:today',
             'check_out_date' => 'required|date|after:check_in_date',
             'adult_capacity' => 'required|integer|min:1',
-            'children_capacity' => 'required|integer|min:0',
         ]);
 
         // Jika user memilih room_id, proses booking

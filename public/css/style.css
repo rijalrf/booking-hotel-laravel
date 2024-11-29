@@ -2,11 +2,39 @@
     font-family: "Poppins", serif;
 }
 
-.icon-sm{
-   width: 16px;
-   margin-right: 5px;
+.icon-sm {
+    width: 16px;
+    height: 16px;
+    margin: 2px;
+}
+.icon-m {
+    width: 26px;
+    height: 26px;
+    margin: 2px;
+}
+.icon-l {
+    width: 36px;
+    height: 36px;
+    margin: 2px;
+}
+.icon-xl {
+    width: 46px;
+    height: 46px;
+    margin: 2px;
+}
+.stroke-width-sm {
+    stroke-width: 1px;
+}
+.stroke-width-m {
+    stroke-width: 3px;
+}
+.stroke-width-l {
+    stroke-width: 5px;
+}
+.stroke-width-xl {
+    stroke-width: 7px;
 }
 
-a{
+a {
     text-decoration: none;
 }

@@ -64,7 +64,7 @@
                                         <li>
                                             <a id="deleteRoom"
                                                 onclick="deleteRoom({{ $room->id }},{{ $room->roomNumber }})"
-                                                type="submit" class="dropdown-item" data-bs-toggle="modal"
+                                                type="submit" class="dropdown-item text-danger" data-bs-toggle="modal"
                                                 data-bs-target="#modal">
                                                 <i style="width: 16px" class="icon-sm" data-feather="trash-2"></i>
                                                 Delete
