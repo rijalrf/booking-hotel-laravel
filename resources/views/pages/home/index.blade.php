@@ -2,8 +2,10 @@
     <x-navbar />
     <div style="height: 460px; overflow:hidden" class="mb-4">
         <img class="w-100" src="{{ asset('img/room_banner1.jpg') }}" alt="">
+
     </div>
     <main class="main-content" id="main">
+
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -18,7 +20,7 @@
                     <x-booking-status :bookingStatus="$checkedOutBookings" :title="'Check Out'" />
                 </div>
                 <div class="col">
-                    <x-booking-status :bookingStatus="$checkedInBookings" :title="'Check In'" />
+                    <x-room-services :roomServices="$roomServices" :bookingSelected="$bookings ?? []" />
                 </div>
             </div>
         </div>

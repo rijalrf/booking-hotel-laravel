@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Amenity;
 use App\Models\Room;
+use App\Models\Amenity;
+use App\Models\Booking;
 use App\Models\RoomAmenity;
 use Illuminate\Http\Request;
 
@@ -73,6 +74,23 @@ class RoomController extends Controller
         return redirect()->route('room.index')->with('notification', [
             'type' => 'success',
             'message' => 'Room has been deleted successfully!'
+        ]);
+    }
+
+    public function searchRoomBooking(Request $request)
+    {
+
+        $booking = Booking::whereHas('room', function ($query) use ($request) {
+            $query->where('roomNumber', $request->room_number); // Filter berdasarkan roomNumber
+        })
+            ->where('status', 'checked_in')
+            ->with('room')  // Memuat relasi room
+            ->latest()
+            ->first();
+
+        return response()->json([
+            'status' => 'success',
+            'booking' => $booking,
         ]);
     }
 }

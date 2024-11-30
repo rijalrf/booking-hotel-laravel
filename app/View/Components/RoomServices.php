@@ -8,12 +8,13 @@ use Illuminate\View\Component;
 
 class RoomServices extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public $roomServices;
+    public $bookingSelected;
+
+    public function __construct($roomServices, $bookingSelected)
     {
-        //
+        $this->roomServices = $roomServices;
+        $this->bookingSelected = $bookingSelected;
     }
 
     /**

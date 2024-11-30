@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AmenityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Controllers\AuthController;
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/bookings/delete/{id}', [BookingController::class, 'delete'])->name('booking.delete');
 
     //route room
+    Route::get('/rooms/search', [RoomController::class, 'searchRoomBooking'])->name('room.searchBooking');
     Route::get('/rooms', [RoomController::class, 'index'])->name('room.index');
     Route::get('/rooms/add', [RoomController::class, 'add'])->name('room.add');
     Route::get('/rooms/detail/{id}', [RoomController::class, 'detail'])->name('room.detail');
@@ -39,13 +41,20 @@ Route::middleware('auth')->group(function () {
 
     //route room amenity
     Route::post('/roomAmenities/create', [RoomAmenityController::class, 'create'])->name('roomAmenity.create');
-    Route::post('/roomAmenities/create', [RoomAmenityController::class, 'create'])->name('roomAmenity.create');
     Route::delete('/roomAmenities/delete/{id}', [RoomAmenityController::class, 'delete'])->name('roomAmenity.delete');
 
     //Room Services
-    Route::post('/roomServices/create', [RoomServicesController::class, 'create'])->name('roomServices.create');
+    Route::post('/roomServices/create', [RoomServicesController::class, 'create'])->name('roomService.create');
 
     //Room Service Type
     Route::get('/roomServiceType', [RoomServiceTypeController::class, 'index'])->name('roomServiceType.index');
     Route::post('/roomServiceType/create', [RoomServiceTypeController::class, 'create'])->name('roomServiceType.create');
+    Route::post('/roomServiceType/edit/{id}', [RoomServiceTypeController::class, 'edit'])->name('roomServiceType.edit');
+    Route::delete('/roomServiceType/delete/{id}', [RoomServiceTypeController::class, 'delete'])->name('roomServiceType.delete');
+
+    //Room Amenity
+    Route::get('/amenity', [AmenityController::class, 'index'])->name('amenity.index');
+    Route::post('/amenity/create', [AmenityController::class, 'create'])->name('amenity.create');
+    Route::post('/amenity/edit/{id}', [AmenityController::class, 'edit'])->name('amenity.edit');
+    Route::delete('/amenity/delete/{id}', [AmenityController::class, 'delete'])->name('amenity.delete');
 });

@@ -10,7 +10,7 @@ class RoomServiceTypeController extends Controller
     public function index()
     {
         // Fetch all room service types
-        $roomServiceTypes = RoomServiceType::paginate(5);
+        $roomServiceTypes = RoomServiceType::latest()->paginate(5);
 
         // Return the view with the room service types
         return view('pages.roomServiceType.index', compact('roomServiceTypes'));
@@ -32,6 +32,38 @@ class RoomServiceTypeController extends Controller
         return redirect()->route('roomServiceType.index')->with('notification', [
             'type' => 'success',
             'message' => 'Room Service Type created successfully'
+        ]);
+    }
+
+    //add action edit
+    public function edit(Request $request, $id)
+    {
+        // find room service type by id
+        $roomServiceType = RoomServiceType::find($id);
+
+        // update data
+        $roomServiceType->update($request->all());
+
+        // redirect to index
+        return redirect()->route('roomServiceType.index')->with('notification', [
+            'type' => 'success',
+            'message' => 'Room Service Type updated successfully'
+        ]);
+    }
+
+    // add action delete
+    public function delete($id)
+    {
+        // find room service type by id
+        $roomServiceType = RoomServiceType::find($id);
+
+        // delete data
+        $roomServiceType->delete();
+
+        // redirect to index
+        return redirect()->route('roomServiceType.index')->with('notification', [
+            'type' => 'success',
+            'message' => 'Room Service Type deleted successfully'
         ]);
     }
 }

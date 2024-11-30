@@ -3,18 +3,22 @@
         <li class="breadcrumb-item"><a href="{{ route('home.index') }}">
                 <i class="icon-sm" data-feather="home"></i> Home</a></li>
         <li class="breadcrumb-item active" aria-current="page">
-            <i class="icon-sm" data-feather="gift"></i> Room Service Type
+            <i class="icon-sm" data-feather="tag"></i> Room Amenity
         </li>
     </x-slot:breadcrumb>
     <x-slot:title>
-        Room Service Type List
+        Room Amenity List
         <div class="fs-6 form-text">
-            available room service, makes it easier to record services, and provides information to hotel guests.
+            facilities provided in hotel rooms, making it easier to
+            manage
+            facility inventory and
+            ensure service quality.
         </div>
     </x-slot:title>
     <x-slot:action>
 
     </x-slot:action>
+
     <div class="row">
         <div class="col-4">
             <div class="card">
@@ -32,6 +36,7 @@
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+
                         </div>
                         <div class="mt-3 text-end">
                             <button type="submit" class="btn btn-primary">
@@ -49,18 +54,17 @@
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
-                                @foreach ($roomServiceTypes as $roomServiceType)
+                                @foreach ($amenities as $amenity)
                                     <tr>
-                                        <td>{{ $roomServiceType->name }}</td>
+                                        <td>{{ $amenity->name }}</td>
                                         <td class="d-flex justify-content-end">
                                             <div class="d-flex gap-3">
                                                 <button class="btn btn-sm btn-outline-primary"
-                                                    onclick="edit({{ $roomServiceType->id }}, '{{ $roomServiceType->name }}')">
+                                                    onclick="edit({{ $amenity->id }}, '{{ $amenity->name }}')">
                                                     <i data-feather="edit" class="icon-sm"></i>
                                                     Edit
                                                 </button>
-                                                <form
-                                                    action="{{ route('roomServiceType.delete', $roomServiceType->id) }}"
+                                                <form action="{{ route('amenity.delete', $amenity->id) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -76,9 +80,9 @@
                             </tbody>
                         </table>
                     </div>
-                    {{ $roomServiceTypes->links() }}
+                    {{ $amenities->links() }}
                     <div>
-                        @if ($roomServiceTypes->isEmpty())
+                        @if ($amenities->isEmpty())
                             <x-empty-section />
                         @endif
                     </div>
@@ -89,11 +93,11 @@
 </x-layout>
 <script>
     $(document).ready(function() {
-        $('#form-data').attr('action', `/roomServiceType/create`).attr('method', 'post');
+        $('#form-data').attr('action', `/amenity/create`).attr('method', 'post');
     })
 
     function edit(id, name) {
         $('#name-service-type').val(name);
-        $('#form-data').attr('action', `/roomServiceType/edit/${id}`).attr('method', 'post');
+        $('#form-data').attr('action', `/amenity/edit/${id}`).attr('method', 'post');
     }
 </script>

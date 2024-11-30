@@ -1,11 +1,11 @@
 <div>
     <span
         class="btn 
-        @if ($status == 'booked') btn-primary
-        @elseif ($status == 'checked_in') btn-success
-        @elseif ($status == 'checked_out') btn-danger
-        @else btn-secondary @endif
-        badge rounded-pill p-2">
+        @if ($status == 'booked') btn-sm btn-primary
+        @elseif ($status == 'checked_in') btn-sm btn-success
+        @elseif ($status == 'checked_out') btn-sm btn-danger
+        @else btn-sm btn-secondary @endif
+        rounded">
         @if ($status == 'checked_out')
             CHECKED OUT
         @elseif ($status == 'checked_in')

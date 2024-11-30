@@ -27,7 +27,7 @@
                                 New Booking</a></li>
                         <li><a class="dropdown-item" href="{{ route('booking.index') }}">
                                 <i class="icon-sm" data-feather="align-right"></i>
-                                Booking List</a></li>
+                                Bookings</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -43,19 +43,19 @@
                         <li>
                             <a class="dropdown-item" href="{{ route('room.index') }}">
                                 <i class="icon-sm" data-feather="align-right"></i>
-                                Room List
+                                Rooms
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{{ route('room.index') }}">
+                            <a class="dropdown-item" href="{{ route('amenity.index') }}">
                                 <i class="icon-sm" data-feather="tag"></i>
-                                Room Amenity
+                                Room Amenities
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="{{ route('roomServiceType.index') }}">
                                 <i class="icon-sm" data-feather="gift"></i>
-                                Room Service Type
+                                Room Services
                             </a>
                         </li>
                     </ul>

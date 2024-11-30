@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
-use Illuminate\Http\Request;
+use App\Models\RoomServiceType;
 
 class HomepageController extends Controller
 {
@@ -16,7 +16,11 @@ class HomepageController extends Controller
         // get booking status = checked_out
         $checkedOutBookings = Booking::where('status', 'checked_in')->paginate(5);
 
+        //get room service type
+        $roomServices = RoomServiceType::latest()->get();
+
+
         // return view with data
-        return view('pages.home.index', compact('checkedInBookings', 'checkedOutBookings'));
+        return view('pages.home.index', compact('checkedInBookings', 'checkedOutBookings', 'roomServices'));
     }
 }

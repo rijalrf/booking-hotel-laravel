@@ -78,7 +78,7 @@ class BookingController extends Controller
             $request->check_in_date,
             $request->check_out_date,
             $request->adult_capacity,
-            $request->children_capacity,
+            $request->children_capacity ?? 0,
         );
         // Lempar exception jika tidak ada kamar yang tersedia
         if (empty($availableRooms)) {
@@ -99,8 +99,13 @@ class BookingController extends Controller
     // action booking create
     public function create(Request $request)
     {
-        // dd($request);
-        Booking::create($request->all());
+        $data = $request->all();
+
+        if (is_null($data['children_capacity'])) {
+            $data['children_capacity'] = 0;
+        }
+
+        Booking::create($data);
         return redirect()->route('booking.index')->with('notification', [
             'type' => 'success',
             'message' => 'Booking created successfully'
@@ -112,10 +117,17 @@ class BookingController extends Controller
         $booking = Booking::find($request->id); // Mencari booking berdasarkan ID
         $booking->update(['status' => $request->status]); // Update hanya status
 
-        return redirect()->route('booking.index')->with('notification', [
-            'type' => 'success',
-            'message' => 'Booking status updated successfully'
-        ]);
+        if ($request->stay) {
+            return redirect()->back()->with('notification', [
+                'type' => 'success',
+                'message' => 'Booking status updated successfully'
+            ]);
+        } else {
+            return redirect()->route('booking.index')->with('notification', [
+                'type' => 'success',
+                'message' => 'Booking status updated successfully'
+            ]);
+        }
     }
 
     public function search(Request $request)
@@ -131,6 +143,14 @@ class BookingController extends Controller
             'status' => $request->status,
         ];
 
-        return view('pages.booking.index', compact('bookings', 'search'));
+        if ($request->stay) {
+            return redirect()->back(compact('bookings', 'search'))->with('notification', [
+                'type' => 'success',
+                // message booking berhasil di temukan
+                'message' => 'Booking ' . $search['query'] . ' Found'
+            ]);
+        } else {
+            return view('pages.booking.index', compact('bookings', 'search'));
+        }
     }
 }
