@@ -6,6 +6,8 @@ use App\Http\Middleware\AuthMiddleware;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ChartController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\RoomAmenityController;
 use App\Http\Controllers\RoomServicesController;
@@ -39,6 +41,16 @@ Route::middleware('auth')->group(function () {
     Route::post('/rooms/create', [RoomController::class, 'create'])->name('room.create');
     Route::delete('/rooms/delete/{id}', [RoomController::class, 'delete'])->name('room.delete');
 
+  //route employee
+    Route::get('/employees/search', [EmployeeController::class, 'search'])->name('employee.search');
+    Route::post('/employees/updateStatus/{id}', [EmployeeController::class, 'status'])->name('employee.setStatus');
+    Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index');
+    Route::get('/employees/new', [EmployeeController::class, 'new'])->name('employee.new');
+    Route::get('/employees/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
+    Route::post('/employees/create', [EmployeeController::class, 'create'])->name('employee.create');
+    Route::post('/employees/update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
+    Route::delete('/employees/delete/{id}', [EmployeeController::class, 'delete'])->name('employee.delete');
+
     //route room amenity
     Route::post('/roomAmenities/create', [RoomAmenityController::class, 'create'])->name('roomAmenity.create');
     Route::delete('/roomAmenities/delete/{id}', [RoomAmenityController::class, 'delete'])->name('roomAmenity.delete');
@@ -57,4 +69,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/amenity/create', [AmenityController::class, 'create'])->name('amenity.create');
     Route::post('/amenity/edit/{id}', [AmenityController::class, 'edit'])->name('amenity.edit');
     Route::delete('/amenity/delete/{id}', [AmenityController::class, 'delete'])->name('amenity.delete');
+
+    //chart booking
+    Route::get('/chart', [ChartController::class, 'chart'])->name('booking.chart');
+
 });

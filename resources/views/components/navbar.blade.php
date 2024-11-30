@@ -60,6 +60,13 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->path() == 'employees' ? 'active' : '' }}" aria-current="page"
+                        href="{{ route('employee.index') }}">
+                        <i class="icon-sm" data-feather="user-check"></i>
+                        Employee</a>
+                </li>
+
             </ul>
             {{-- Theme --}}
             <div class="me-xl-3">

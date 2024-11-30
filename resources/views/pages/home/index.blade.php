@@ -5,7 +5,6 @@
 
     </div>
     <main class="main-content" id="main">
-
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -17,13 +16,12 @@
             </div>
             <div class="row mt-4">
                 <div class="col">
-                    <x-booking-status :bookingStatus="$checkedOutBookings" :title="'Check Out'" />
+                    <x-chart-booking></x-chart-booking>
                 </div>
                 <div class="col">
                     <x-room-services :roomServices="$roomServices" :bookingSelected="$bookings ?? []" />
                 </div>
             </div>
-        </div>
         </div>
     </main>
 </x-layout-base>

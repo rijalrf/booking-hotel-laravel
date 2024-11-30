@@ -36,7 +36,8 @@
                     placeholder="price of service" />
             </div>
             <div class="mt-3">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-outline-primary">
+                    <i data-feather="send" class="icon-sm"></i>
                     Request
                 </button>
             </div>

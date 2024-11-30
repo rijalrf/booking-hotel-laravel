@@ -3,6 +3,9 @@
         <li class="breadcrumb-item"><a href="{{ route('home.index') }}">
                 <i class="icon-sm" data-feather="home"></i>
                 Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('room.index') }}">
+                <i class="icon-sm" data-feather="align-right"></i>
+                Room List</a></li>
         <li class="breadcrumb-item active" aria-current="page">
             <i class="icon-sm" data-feather="plus"></i>
             New Room

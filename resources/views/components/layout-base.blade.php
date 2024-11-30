@@ -38,7 +38,9 @@
 
 
     {{-- main content --}}
-    {{ $slot }}
+    <div style="padding-bottom: 50px">
+        {{ $slot }}
+    </div>
     {{-- end main content --}}
 
 

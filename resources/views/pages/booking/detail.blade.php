@@ -103,13 +103,29 @@
                             value="{{ $booking->room->id ?? ($availableRooms->room_id ?? '') }}">
                         <input type="hidden" name="created_by" value="{{ auth()->user()->id }}">
                     </div>
-                    @if ($booking->status == '')
-                        <div class="w-50">
-                            <button class="btn btn-primary"
-                                type="submit">{{ isset($availableRooms) ? 'Book Room' : 'Find Rooms' }}
-                            </button>
+                    <div class="row mt-3">
+                        <div class="w-auto">
+                            <a href="{{ route('booking.index') }}" class="btn btn-outline-primary">
+                                <i data-feather="arrow-left" class="icon-sm"></i>
+                                Back
+                            </a>
                         </div>
-                    @endif
+                        <div class="col-9">
+                            @if ($booking->status == '')
+                                <div class="w-50">
+                                    @if (isset($availableRooms))
+                                        <button class="btn btn-primary" type="submit">
+                                            <i data-feather="book" class="icon-sm"></i>
+                                            Booked
+                                        </button>
+                                    @else
+                                        <button class="btn btn-primary" type="submit">
+                                            <i data-feather="search" class="icon-sm"></i>
+                                            Find Available Room
+                                        </button>
+                                    @endif
+                                </div>
+                            @endif
                 </form>
                 @if ($booking->status == 'booked')
                     <div class="gap-3 d-flex">
@@ -118,14 +134,18 @@
                             method="POST">
                             @csrf
                             @method('POST')
-                            <button type="submit" class="btn btn-success">Check In</button>
+                            <button type="submit" class="btn btn-success">
+                                <i data-feather="log-in" class="icon-sm"></i>
+                                Check In</button>
                         </form>
                         <form
                             action="{{ route('booking.setStatus', ['status' => 'cancelled', 'id' => $booking->id]) }}"
                             method="POST">
                             @csrf
                             @method('POST')
-                            <button type="submit" class="btn btn-secondary">Canceled</button>
+                            <button type="submit" class="btn btn-secondary">
+                                <i data-feather="x" class="icon-sm"></i>
+                                Canceled</button>
                         </form>
                     </div>
                 @endif
@@ -136,14 +156,18 @@
                             method="POST">
                             @csrf
                             @method('POST')
-                            <button type="submit" class="btn btn-danger">Check Out</button>
+                            <button type="submit" class="btn btn-danger">
+                                <i data-feather="log-out" class="icon-sm"></i>
+                                Check Out</button>
                         </form>
                     </div>
                 @endif
             </div>
         </div>
-        <div class="col text-center">
-            <img class="w-75" src="{{ asset('img/vector2.png') }}" alt="">
-        </div>
+    </div>
+    </div>
+    <div class="col text-center">
+        <img class="w-75" src="{{ asset('img/vector2.png') }}" alt="">
+    </div>
     </div>
 </x-layout>

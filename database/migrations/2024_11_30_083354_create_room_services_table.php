@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('booking_id');
             $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('cascade');
             $table->integer('price');
-            $table->date('date_created');
             $table->timestamps();
         });
     }

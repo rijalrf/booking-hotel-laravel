@@ -34,7 +34,7 @@
                 </tbody>
             </table>
         </div>
-        <div> {{ $bookingStatus->links() }}</div>
+        <div> {{ $bookingStatus->appends(['checked_in_page' => request('checked_in_page')])->links() }}</div>
         <div>
             @if ($bookingStatus->isEmpty())
                 <x-empty-section />

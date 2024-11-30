@@ -17,7 +17,10 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-primary">Add</button>
+            <button type="submit" class="btn btn-outline-primary">
+                <i data-feather="plus" class="icon-sm"></i>
+                Add
+            </button>
         </form>
     </div>
 </div>
@@ -38,7 +41,7 @@
                                 <form action="{{ route('roomAmenity.delete', $roomamenity->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">
                                         <i data-feather="trash-2"></i>
                                     </button>
                                 </form>

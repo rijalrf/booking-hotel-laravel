@@ -61,8 +61,15 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        <a href="{{ route('room.index') }}" class="btn btn-outline-primary">Back</a>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <div class=" d-flex gap-3 mt-3">
+                            <a href="{{ route('room.index') }}" class="btn btn-outline-primary">
+                                <i data-feather="arrow-left" class="icon-sm"></i>
+                                Back</a>
+                            <button type="submit" class="btn btn-primary">
+                                <i data-feather="send" class="icon-sm"></i>
+                                Save
+                            </button>
+                        </div>
                     </form>
 
                 </div>

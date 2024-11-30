@@ -26,7 +26,7 @@
                 </tbody>
             </table>
         </div>
-        <div> {{ $bookingStatus->links() }}</div>
+        <div> {{ $bookingStatus->appends(['checked_out_page' => request('checked_out_page')])->links() }}</div>
         <div>
             @if ($bookingStatus->isEmpty())
                 <x-empty-section />
