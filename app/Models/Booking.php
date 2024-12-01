@@ -27,8 +27,8 @@ class Booking extends Model
         return $this->belongsTo(Room::class, 'room_id');
     }
 
-    // public function room_services()
-    // {
-    //     return $this->hasMany(RoomService::class, 'id');
-    // }
+    public function room_services()
+    {
+        return $this->hasMany(RoomService::class, 'booking_id');
+    }
 }

@@ -55,10 +55,16 @@
                         value="{{ $search['last_name'] ?? '' }}" placeholder="Search by Last Name">
                 </div>
                 <div class="w-25">
-                    <select class="form-select" name="role">
-                        <option @if ($search['role'] == '') selected @endif value="">All</option>
-                        <option @if ($search['role'] == 'staf') selected @endif value="staf">Staf</option>
-                        <option @if ($search['role'] == 'manager') selected @endif value="manager">Manager</option>
+                    <select class="form-select cursor-pointer" name="role">
+                        <option class="cursor-pointer" @if ($search['role'] == '') selected @endif value="">
+                            All
+                        </option>
+                        <option class="cursor-pointer" @if ($search['role'] == 'staf') selected @endif value="staf">
+                            Staf
+                        </option>
+                        <option class="cursor-pointer" @if ($search['role'] == 'manager') selected @endif
+                            value="manager">Manager
+                        </option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary">
@@ -105,7 +111,7 @@
                             </td>
                             <td class="text-end">
                                 <div class="dropdown-center text-center">
-                                    <i class="dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    <i class="dropdown-toggle icon-sm" type="button" data-bs-toggle="dropdown"
                                         aria-expanded="false" data-feather="more-vertical">
                                     </i>
                                     <ul class="dropdown-menu">

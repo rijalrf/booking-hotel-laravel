@@ -10,4 +10,9 @@ class RoomService extends Model
     /** @use HasFactory<\Database\Factories\RoomServiceFactory> */
     use HasFactory;
     protected $fillable = ['room_service_type_id', 'booking_id', 'price'];
+
+    public function RoomServiceType()
+    {
+        return $this->belongsTo(RoomServiceType::class, 'room_service_type_id');
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use App\Models\Booking;
+use App\Models\RoomService;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -152,5 +153,26 @@ class BookingController extends Controller
         } else {
             return view('pages.booking.index', compact('bookings', 'search'));
         }
+    }
+
+    public function checked_out_info($id)
+    {
+        //find booking by id
+        $booking = Booking::with('room')->find($id);
+
+        //find room service by booking id
+        $roomServices = RoomService::where('booking_id', $id)->with('RoomServiceType')->get();
+
+        $page_meta = [
+            'title' => 'Checked Out Information',
+            'url' => route('booking.setStatus', ['status' => 'checked_out', 'id' => $booking->id, 'stay' => true])
+        ];
+
+        $data = [
+            'booking' => $booking,
+            'page_meta' => $page_meta,
+            'roomService' => $roomServices
+        ];
+        return response()->json($data);
     }
 }

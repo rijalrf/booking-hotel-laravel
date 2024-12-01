@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Dotenv\Exception\ValidationException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -67,6 +69,13 @@ class User extends Authenticatable
     public function hasRole()
     {
         $employee = $this->employee;
+
+        if (empty($employee)) {
+            return (object)[
+                'hasManager' => false,
+                'hasStaf' => false
+            ];
+        }
         // dd($employee)
         return (object)[
             'hasManager' => $employee->role == 'manager',

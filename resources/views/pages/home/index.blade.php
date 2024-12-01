@@ -2,8 +2,8 @@
     <x-navbar />
     <div style="height: 460px; overflow:hidden" class="mb-4">
         <img class="w-100" src="{{ asset('img/room_banner1.jpg') }}" alt="">
-
     </div>
+
     <main class="main-content" id="main">
         <div class="container">
             <div class="row">
