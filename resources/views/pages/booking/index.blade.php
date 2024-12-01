@@ -21,7 +21,8 @@
     </x-slot:title>
     <x-slot:action>
         <a href="{{ route('booking.new') }}" class="btn btn-primary"><i class="icon-sm" data-feather="plus"></i>Add
-            Booking</a>
+            Booking
+        </a>
     </x-slot:action>
     <div class="my-3">
         <form action="{{ route('booking.search') }}">

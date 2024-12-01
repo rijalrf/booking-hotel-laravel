@@ -20,34 +20,36 @@
     </x-slot:action>
 
     <div class="row">
-        <div class="col-4">
-            <div class="card">
-                <div class="card-body">
-                    <form id="form-data">
-                        @csrf
-                        @method('POST')
-                        <div class="mb-3">
-                            <label for="" class="form-label">Name</label>
-                            <input type="text" class="form-control" placeholder="e.g Safe" name="name"
-                                id="name-service-type" aria-describedby="helpId"
+        @can('hasManager')
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="form-data">
+                            @csrf
+                            @method('POST')
+                            <div class="mb-3">
+                                <label for="" class="form-label">Name</label>
+                                <input type="text" class="form-control" placeholder="e.g Safe" name="name"
+                                    id="name-service-type" aria-describedby="helpId"
+                                    @error('name')
+                                        is-invalid
+                                    @enderror>
                                 @error('name')
-                                is-invalid
-                            @enderror>
-                            @error('name')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
 
-                        </div>
-                        <div class="mt-3 text-end">
-                            <button type="submit" class="btn btn-primary">
-                                <i data-feather="send" class="icon-sm"></i>
-                                Submit</button>
-                        </div>
-                    </form>
+                            </div>
+                            <div class="mt-3 text-end">
+                                <button type="submit" class="btn btn-primary">
+                                    <i data-feather="send" class="icon-sm"></i>
+                                    Submit</button>
+                            </div>
+                        </form>
 
+                    </div>
                 </div>
             </div>
-        </div>
+        @endcan
         <div class="col-8">
             <div class="card">
                 <div class="card-body">
@@ -57,24 +59,26 @@
                                 @foreach ($amenities as $amenity)
                                     <tr>
                                         <td>{{ $amenity->name }}</td>
-                                        <td class="d-flex justify-content-end">
-                                            <div class="d-flex gap-3">
-                                                <button class="btn btn-sm btn-outline-primary"
-                                                    onclick="edit({{ $amenity->id }}, '{{ $amenity->name }}')">
-                                                    <i data-feather="edit" class="icon-sm"></i>
-                                                    Edit
-                                                </button>
-                                                <form action="{{ route('amenity.delete', $amenity->id) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-outline-danger">
-                                                        <i data-feather="trash" class="icon-sm"></i>
-                                                        Delete
+                                        @can('hasManager')
+                                            <td class="d-flex justify-content-end">
+                                                <div class="d-flex gap-3">
+                                                    <button class="btn btn-sm btn-outline-primary"
+                                                        onclick="edit({{ $amenity->id }}, '{{ $amenity->name }}')">
+                                                        <i data-feather="edit" class="icon-sm"></i>
+                                                        Edit
                                                     </button>
-                                                </form>
-                                            </div>
-                                        </td>
+                                                    <form action="{{ route('amenity.delete', $amenity->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                            <i data-feather="trash" class="icon-sm"></i>
+                                                            Delete
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        @endcan
                                     </tr>
                                 @endforeach
                             </tbody>

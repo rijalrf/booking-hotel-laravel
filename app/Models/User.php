@@ -45,4 +45,32 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function employee()
+    {
+        return $this->hasOne(Employee::class, 'user_id');
+    }
+    public function employeeInfo()
+    {
+        $employee = $this->employee; // Mengambil relasi Employee yang sudah didefinisikan
+
+        if (!$employee) {
+            return null;
+        }
+
+        return (object) [
+            'name' => $employee->name,
+            'email' => $this->email, // Email dari User
+            'role' => $employee->role,
+        ];
+    }
+
+    public function hasRole()
+    {
+        $employee = $this->employee;
+        // dd($employee)
+        return (object)[
+            'hasManager' => $employee->role == 'manager',
+            'hasStaf' => $employee->role == 'staf'
+        ];
+    }
 }

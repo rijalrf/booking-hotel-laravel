@@ -11,6 +11,7 @@
         <h6 class="mb-0">{{ $user->name }}</h6>
         <small class="text-muted">{{ $user->email }}</small>
     </div>
+
     {{-- <div class="p-2">
         <div class="rounded-circle border border-white">
             <i data-feather="user" class="icon-l stroke-width-sm"></i>

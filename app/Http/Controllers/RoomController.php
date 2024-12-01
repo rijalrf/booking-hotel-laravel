@@ -7,6 +7,7 @@ use App\Models\Amenity;
 use App\Models\Booking;
 use App\Models\RoomAmenity;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class RoomController extends Controller
 {
@@ -21,12 +22,30 @@ class RoomController extends Controller
 
     public function add()
     {
+
+        if (Gate::denies('create-room')) {
+            // abort(403, 'Anda tidak memiliki izin untuk akses create room.');
+            return redirect()->route('room.index');
+        }
         //return view to add room
         return view('pages.room.add');
     }
 
+    public function show($id)
+    {
+        $room = Room::find($id);
+        $roomAmenities = RoomAmenity::where('room_id', $id)->with('Amenities')->paginate(10);
+        // dd($roomAmenities);
+
+        return view('pages.room.show', compact('room', 'roomAmenities'));
+    }
+
     public function detail($id)
     {
+        if (Gate::denies('create-room')) {
+            // abort(403, 'Anda tidak memiliki izin untuk akses create room.');
+            return redirect()->route('room.index');
+        }
         //fetch data amenity
         $amenities = Amenity::all();
 

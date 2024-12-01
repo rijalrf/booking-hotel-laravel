@@ -26,8 +26,10 @@
         Room List
     </x-slot:title>
     <x-slot:action>
-        <a href="{{ route('room.add') }}" class="btn btn-primary"><i class="icon-sm" data-feather="plus"></i>Add
-            Room</a>
+        @can('hasManager')
+            <a href="{{ route('room.add') }}" class="btn btn-primary"><i class="icon-sm" data-feather="plus"></i>Add
+                Room</a>
+        @endcan
     </x-slot:action>
 
     <div class="card">
@@ -39,39 +41,42 @@
                         <th scope="col">Children Capacity</th>
                         <th scope="col">Adult Capacity</th>
                         <th scope="col">Price</th>
-                        <th scope="col" class="text-center">#</th>
+                        <th scope="col" class="text-center"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($rooms as $room)
                         <tr>
-                            <td>{{ $room->roomNumber }}</td>
+                            <td><a href="{{ route('room.show', $room->id) }}">
+                                    {{ $room->roomNumber }}</a></td>
                             <td>{{ $room->childrenCapacity }}</td>
                             <td>{{ $room->adultCapacity }}</td>
                             <td>{{ $room->price }}</td>
                             <td>
-                                <div class="dropdown-center text-center">
-                                    <i class="dropdown-toggle icon-sm" type="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false" data-feather="more-vertical">
-                                    </i>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="{{ route('room.detail', $room->id) }}">
-                                                <i style="width: 16px" class="icon-sm" data-feather="edit"></i>
-                                                Edit
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a id="deleteRoom"
-                                                onclick="deleteRoom({{ $room->id }},{{ $room->roomNumber }})"
-                                                type="submit" class="dropdown-item text-danger" data-bs-toggle="modal"
-                                                data-bs-target="#modal">
-                                                <i style="width: 16px" class="icon-sm" data-feather="trash-2"></i>
-                                                Delete
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                @can('hasManager')
+                                    <div class="dropdown-center text-center">
+                                        <i class="dropdown-toggle icon-sm" type="button" data-bs-toggle="dropdown"
+                                            aria-expanded="false" data-feather="more-vertical">
+                                        </i>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item" href="{{ route('room.detail', $room->id) }}">
+                                                    <i style="width: 16px" class="icon-sm" data-feather="edit"></i>
+                                                    Edit
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a id="deleteRoom"
+                                                    onclick="deleteRoom({{ $room->id }},{{ $room->roomNumber }})"
+                                                    type="submit" class="dropdown-item text-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#modal">
+                                                    <i style="width: 16px" class="icon-sm" data-feather="trash-2"></i>
+                                                    Delete
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

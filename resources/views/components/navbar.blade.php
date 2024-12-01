@@ -22,12 +22,18 @@
                         Booking
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('booking.new') }}">
+                        <li>
+                            <a class="dropdown-item" href="{{ route('booking.new') }}">
                                 <i class="icon-sm" data-feather="plus"></i>
-                                New Booking</a></li>
-                        <li><a class="dropdown-item" href="{{ route('booking.index') }}">
+                                New Booking
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('booking.index') }}">
                                 <i class="icon-sm" data-feather="align-right"></i>
-                                Bookings</a></li>
+                                Bookings
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -37,9 +43,14 @@
                         Room
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('room.add') }}">
-                                <i class="icon-sm" data-feather="plus"></i>
-                                New Room</a></li>
+                        @can('hasManager')
+                            <li>
+                                <a class="dropdown-item" href="{{ route('room.add') }}">
+                                    <i class="icon-sm" data-feather="plus"></i>
+                                    New Room
+                                </a>
+                            </li>
+                        @endcan
                         <li>
                             <a class="dropdown-item" href="{{ route('room.index') }}">
                                 <i class="icon-sm" data-feather="align-right"></i>
@@ -60,13 +71,15 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->path() == 'employees' ? 'active' : '' }}" aria-current="page"
-                        href="{{ route('employee.index') }}">
-                        <i class="icon-sm" data-feather="user-check"></i>
-                        Employee</a>
-                </li>
-
+                @can('hasManager')
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->path() == 'employees' ? 'active' : '' }}" aria-current="page"
+                            href="{{ route('employee.index') }}">
+                            <i class="icon-sm" data-feather="user-check"></i>
+                            Employee
+                        </a>
+                    </li>
+                @endcan
             </ul>
             {{-- Theme --}}
             <div class="me-xl-3">
