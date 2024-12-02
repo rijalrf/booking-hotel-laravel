@@ -13,7 +13,7 @@
             </div>
             <ul class="dropdown-menu">
                 <li>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="{{ route('profile.index') }}">
                         <i data-feather="user" class="icon-sm"></i>
                         Profile
                     </a>

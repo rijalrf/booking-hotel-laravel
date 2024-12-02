@@ -2,12 +2,12 @@
 
 use App\Http\Controllers\AmenityController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\AuthMiddleware;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\EmployeePictureController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomAmenityController;
@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
   Route::get('/', [HomepageController::class, 'index'])->name('home.index');
 
   //profile
-  Route::prefix('profile')->name('profile')->group(function () {
+  Route::prefix('profile')->name('profile.')->group(function () {
     Route::get('/me', [ProfileController::class, 'index'])->name('index');
   });
 
@@ -66,6 +66,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/create', [EmployeeController::class, 'create'])->name('create');
     Route::post('/update/{id}', [EmployeeController::class, 'update'])->name('update');
     Route::delete('/delete/{id}', [EmployeeController::class, 'delete'])->name('delete');
+    Route::post('/upload/{id}', [EmployeePictureController::class, 'store'])->name('uplaod_img');
   });
 
   //route room amenity

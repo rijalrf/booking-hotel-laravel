@@ -115,17 +115,21 @@
                                         aria-expanded="false" data-feather="more-vertical">
                                     </i>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item"
+                                        <li>
+                                            <a class="dropdown-item"
                                                 href="{{ route('employee.edit', $employee->id) }}">
                                                 <i data-feather="edit" class="icon-sm"></i>
-                                                Edit</a></li>
+                                                Edit
+                                            </a>
+                                        </li>
                                         <li>
                                             <button
                                                 onclick="deleteEmployee( {{ $employee->id }}, '{{ $employee->last_name }}')"
                                                 type="button" class="dropdown-item text-danger" data-bs-toggle="modal"
                                                 data-bs-target="#modalConfirm">
                                                 <i data-feather="trash" class="icon-sm"></i>
-                                                Delete</button>
+                                                Delete
+                                            </button>
                                         </li>
                                     </ul>
                                 </div>
