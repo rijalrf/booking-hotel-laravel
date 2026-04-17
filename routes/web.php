@@ -18,6 +18,8 @@ use App\Http\Controllers\RoomServiceTypeController;
 Route::prefix('auth')->group(function () {
   Route::get('/login', [AuthController::class, 'index'])->name('login');
   Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
+  Route::get('/register', [AuthController::class, 'registerView'])->name('register');
+  Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
   Route::delete('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 });
 
@@ -58,17 +60,17 @@ Route::middleware('auth')->group(function () {
 
   //route employee
   Route::prefix('employees')->name('employee.')->group(function () {
-    Route::get('/search', [EmployeeController::class, 'search'])->name('search');
-    Route::post('/updateStatus/{id}', [EmployeeController::class, 'status'])->name('setStatus');
-    Route::get('/', [EmployeeController::class, 'index'])->name('index');
-    Route::get('/new', [EmployeeController::class, 'new'])->name('new');
-    Route::get('/edit/{id}', [EmployeeController::class, 'edit'])->name('edit');
-    Route::post('/create', [EmployeeController::class, 'create'])->name('create');
-    Route::post('/update/{id}', [EmployeeController::class, 'update'])->name('update');
-    Route::delete('/delete/{id}', [EmployeeController::class, 'delete'])->name('delete');
-    Route::post('/upload/{id}', [EmployeePictureController::class, 'store'])->name('uplaod_img');
+      Route::get('/search', [EmployeeController::class, 'search'])->name('search');
+      Route::post('/updateStatus/{id}', [EmployeeController::class, 'status'])->name('setStatus');
+      Route::get('/', [EmployeeController::class, 'index'])->name('index');
+      Route::get('/new', [EmployeeController::class, 'new'])->name('new');
+      Route::get('/edit/{id}', [EmployeeController::class, 'edit'])->name('edit');
+      Route::post('/create', [EmployeeController::class, 'create'])->name('create');
+      Route::post('/update/{id}', [EmployeeController::class, 'update'])->name('update');
+      Route::delete('/delete/{id}', [EmployeeController::class, 'delete'])->name('delete');
+      Route::post('/upload/{id}', [EmployeePictureController::class, 'store'])->name('uplaod_img');
+      Route::delete('/upload/delete/{id}', [EmployeePictureController::class, 'destroy'])->name('delete_img');
   });
-
   //route room amenity
   Route::prefix('roomAmenities')->name('roomAmenity.')->group(function () {
     Route::post('/create', [RoomAmenityController::class, 'create'])->name('create');

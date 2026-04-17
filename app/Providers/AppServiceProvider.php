@@ -26,9 +26,6 @@ class AppServiceProvider extends ServiceProvider
         // add bootstrap pagination
         Paginator::useBootstrapFive();
 
-        //observe
-        Employee::observe(EmployeeObserver::class);
-
         //gate room create
         Gate::define('create-room', function ($user) {
             return $user->hasRole()->hasManager;

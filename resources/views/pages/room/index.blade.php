@@ -85,6 +85,9 @@
             <div class="mt-3">
                 {{ $rooms->links() }}
             </div>
+            @if ($rooms->isEmpty())
+                <x-empty-section></x-empty-section>
+            @endif
         </div>
     </div>
 

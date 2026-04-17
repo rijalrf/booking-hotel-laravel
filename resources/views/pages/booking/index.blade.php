@@ -91,7 +91,7 @@
                 {{ $bookings->links() }}
             </div>
             @if ($bookings->isEmpty())
-                <x-emptysection></x-emptysection>
+                <x-empty-section></x-empty-section>
             @endif
 
         </div>

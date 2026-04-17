@@ -143,7 +143,7 @@
                 {{ $employees->links() }}
             </div>
             @if ($employees->isEmpty())
-                <x-emptysection></x-emptysection>
+                <x-empty-section></x-empty-section>
             @endif
 
         </div>
